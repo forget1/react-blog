@@ -11,7 +11,7 @@ class MainController extends Controller {
     const userName = this.ctx.request.body.userName;
     const password = this.ctx.request.body.password;
 
-    const sql = `select username from admin_user where username = ${userName} and password = ${password}`;
+    const sql = `select username from admin_user where username = '${userName}' and password = '${password}'`;
     const res = await this.app.mysql.query(sql);
 
     if (res.length > 0) {
