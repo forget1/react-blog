@@ -5,6 +5,7 @@ let servicePath = {
   getArticleById: ipURL + 'getArticleById?id=',
   getTypeInfo: ipURL + 'getTypeInfo',
   getListById: ipURL + 'getListById?id=',
+  checkLogin: ipURL + 'checkLogin',
 }
 
 export default servicePath;

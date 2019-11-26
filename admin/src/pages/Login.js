@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import 'antd/dist/antd.css'
 import { Card, Input, Icon, Button, Spin } from 'antd'
 import '../static/css/Login.css'
+import '../../../config/apiURL'
 
 function Login() {
   const [userName, setUserName] = useState('')
