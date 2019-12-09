@@ -8,5 +8,5 @@ module.exports = options => {
     } else {
       ctx.body = { data: '没有登录' };
     }
-  }
-}
+  };
+};
