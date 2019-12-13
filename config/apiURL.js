@@ -5,7 +5,8 @@ let servicePath = {
   getArticleById: ipURL + 'default/getArticleById?id=',
   getTypeInfo: ipURL + 'default/getTypeInfo',
   getListById: ipURL + 'default/getListById?id=',
-  checkLogin: ipURL + 'admin/checkLogin',
+  checkLogin: ipURL + 'admin/checkLogin', // 检查用户名密码是否正确
+  getTypeInfo: ipURL + 'admin/getTypeInfo', // 获得文章类别信息
 }
 
 export default servicePath;
