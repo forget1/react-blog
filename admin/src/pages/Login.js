@@ -38,6 +38,7 @@ function Login(props) {
     axios({
       method: 'post',
       url: servicePath.checkLogin,
+      withCredentials: true,
       data: dataProps
     }).then(res => {
       setIsLoading(false)

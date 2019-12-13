@@ -36,7 +36,7 @@ const Home = (res) => {
       <Head>
         <title>首页</title>
       </Head>
-      <Header/>>
+      <Header/>
       <Row className='comm-main' type='flex' justify='center'>
         <Col className='comm-left' xs={24} sm={24} md={16} lg={18} xl={14}>
           <span>

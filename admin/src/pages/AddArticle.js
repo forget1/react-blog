@@ -52,9 +52,8 @@ function AddArticle(props) {
   const getTypeInfo = () => {
     axios({
       method: 'get',
-      url: servicePath.getTypeInfo,
-      header: { 'Access-Control-Allow-Origin': '*' },
-      withCredentials: false
+      url: servicePath.getTypeInfoAdmin,
+      withCredentials: true
     }).then(
       res => {
         if (res.data.data === '没有登录') {
@@ -90,7 +89,33 @@ function AddArticle(props) {
       message.error('发布日期不能为空')
       return false
     }
-    message.success('检验通过')
+    
+    let dataProps = {}
+    dataProps.type_id = selectedType
+    dataProps.title = articleTitle
+    dataProps.article_content = articleContent
+    dataProps.introduce = introducemd
+    let datetext = showDate.replace('-', '/')
+    dataProps.addTime = (new Date(datetext).getTime()) / 1000
+    
+    if (articleId === 0) {
+      dataProps.view_count = Math.ceil(Math.random() * 1000) + 1000
+      axios({
+        method: 'post',
+        url: servicePath.addArticle,
+        data: dataProps,
+        withCredentials: true
+      }).then(
+        res => {
+          setArticleId(res.data.inserId)
+          if (res.data.isSuccess) {
+            message.success('文章发布成功')
+          } else {
+            message.error('文章发布失败')
+          }
+        }
+      )
+    }
   }
 
   return (
@@ -166,6 +191,7 @@ function AddArticle(props) {
                   placeholder="发布日期"
                   size="large"
                   onChange={(date, dateString) => setShowDate(dateString)}
+                  showTime
                 />
               </div>
             </Col>
