@@ -50,6 +50,17 @@ class MainController extends Controller {
       isSuccess: updateSuccess,
     };
   }
+  // 获取文章列表
+  async getArticleList() {
+    const sql = 'select article.id as id,' +
+                'article.title as title,' +
+                "from_unixtime(article.addTime, '%Y-%m-%d') as addTime," +
+                'type.typeName as typeName ' +
+                'from article left join type on article.type_id = type.id ' +
+                'order by article.id desc';
+    const resList = await this.app.mysql.query(sql);
+    this.ctx.body = { list: resList };
+  }
 }
 
 module.exports = MainController;

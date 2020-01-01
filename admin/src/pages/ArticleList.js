@@ -2,10 +2,25 @@ import React, { useState, useEffect } from 'react'
 import { List, Row, Col, Modal, message, Button, Switch } from 'antd'
 import axios from 'axios'
 import servicePath from '../../../config/apiURL'
+import '../static/css/ArticleList.css'
 const { confirm } = Modal
 
 function ArticleList(props) {
-  const [list, setList] = useState([])
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    getList();
+  }, [])
+
+  const getList = () => {
+    axios({
+      method: 'get',
+      url: servicePath.getArticleList,
+      withCredentials: true
+    }).then(res => {
+      setList(res.data.list)
+    })
+  }
   return (
     <div>
       <List
@@ -14,19 +29,13 @@ function ArticleList(props) {
             <Col span={8}>
               <b>标题</b>
             </Col>
-            <Col span={3}>
+            <Col span={5}>
               <b>类别</b>
             </Col>
-            <Col span={3}>
+            <Col span={5}>
               <b>发布时间</b>
             </Col>
-            <Col span={3}>
-              <b>集数</b>
-            </Col>
-            <Col span={3}>
-              <b>浏览量</b>
-            </Col>
-            <Col span={4}>
+            <Col span={6}>
               <b>操作</b>
             </Col>
           </Row>
@@ -39,19 +48,13 @@ function ArticleList(props) {
               <Col span={8}>
                 {item.title}
               </Col>
-              <Col span={3}>
+              <Col span={5}>
                 {item.typeName}
               </Col>
-              <Col span={3}>
+              <Col span={5}>
                 {item.addTime}
               </Col>
-              <Col span={3}>
-                共<span>{item.part_count}</span>集
-              </Col>
-              <Col span={3}>
-                {item.view_count}
-              </Col>
-              <Col span={4}>
+              <Col span={6}>
                 <Button type="primary">修改</Button>&nbsp;
                 <Button>删除</Button>
               </Col>
