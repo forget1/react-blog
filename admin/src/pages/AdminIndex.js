@@ -27,21 +27,17 @@ function AdminIndex(props) {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
         <div className="logo"></div>
-        <Menu theme="dark" defaultOpenKeys={['1']}>
+        <Menu theme="dark" defaultOpenKeys={['1']} mode="inline">
           <Menu.Item key="1">
             <Icon type="pie-chart"/>
             <span>工作台</span>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <Icon type="desktop"/>
-            <span>添加文章</span>
           </Menu.Item>
           <SubMenu
             key="sub1"
             onClick={handleClickArticle}
             title={
               <span>
-                <Icon type="user"/>
+                <Icon type="desktop"/>
                 <span>文章管理</span>
               </span>
             }
@@ -63,10 +59,15 @@ function AdminIndex(props) {
             <Breadcrumb.Item>工作台</Breadcrumb.Item>
           </Breadcrumb>
           <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-            <Route path="/index/" exact component={AddArticle}/>
-            <Route path="/index/add/" exact component={AddArticle}/>
-            <Route path="/index/add/:id" exact component={AddArticle}/>
-            <Route path="/index/list/" exact component={ArticleList}/>
+            <div>
+              {/* <Route path="/index/" component={AddArticle}/>
+              <Route path="/index/add/" exact component={AddArticle}/>
+              <Route path="/index/list/" exact component={ArticleList}/> */}
+              <Route path="/index/" exact  component={AddArticle} />
+              <Route path="/index/add/" exact   component={AddArticle} />
+              <Route path="/index/add/:id"  exact   component={AddArticle} />
+              <Route path="/index/list/"   component={ArticleList} />
+            </div>
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>never-forger.top</Footer>

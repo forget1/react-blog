@@ -14,19 +14,19 @@ function ArticleList(props) {
             <Col span={8}>
               <b>标题</b>
             </Col>
-            <Col span={8}>
+            <Col span={3}>
               <b>类别</b>
             </Col>
-            <Col span={8}>
+            <Col span={3}>
               <b>发布时间</b>
             </Col>
-            <Col span={8}>
+            <Col span={3}>
               <b>集数</b>
             </Col>
-            <Col span={8}>
+            <Col span={3}>
               <b>浏览量</b>
             </Col>
-            <Col span={8}>
+            <Col span={4}>
               <b>操作</b>
             </Col>
           </Row>
