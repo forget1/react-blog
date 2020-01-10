@@ -1,7 +1,7 @@
 let ipURL = 'http://localhost:7001/';
 
 let servicePath = {
-  getArticleList: ipURL + 'default/getArticleList',
+  getBlogArticleList: ipURL + 'default/getBlogArticleList',
   getArticleById: ipURL + 'default/getArticleById?id=',
   getTypeInfo: ipURL + 'default/getTypeInfo',
   getListById: ipURL + 'default/getListById?id=',

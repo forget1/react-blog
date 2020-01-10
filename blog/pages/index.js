@@ -73,7 +73,7 @@ const Home = (res) => {
 
 Home.getInitialProps = async() => {
   const promise = new Promise((resolve) => {
-    Axios(servicePath.getArticleList).then(
+    Axios(servicePath.getBlogArticleList).then(
       (res) => {
         resolve(res.data)
       }

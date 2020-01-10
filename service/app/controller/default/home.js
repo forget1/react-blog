@@ -10,7 +10,7 @@ class HomeController extends Controller {
   }
 
   // 获取文章列表
-  async getArticleList() {
+  async getBlogArticleList() {
     const sql = 'select article.id as id,' +
                 'article.title as title,' +
                 'article.introduce as introduce,' +
