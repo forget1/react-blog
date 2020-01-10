@@ -21,6 +21,24 @@ function ArticleList(props) {
       setList(res.data.list)
     })
   }
+  // 删除文章
+  const delArticle = (id) => {
+    confirm({
+      title: '确定要删除这篇博客文章吗？',
+      content: '如果你点击OK按钮，文章将会永远删除，无法恢复。',
+      onOk() {
+        axios(`${servicePath.delArticle}/${id}`, {withCredentials: true}).then(
+          res => {
+            message.success('文章删除成功')
+            getList()
+          }
+        )
+      },
+      onCancel() {
+        message.success('没有任何改变')
+      }
+    })
+  }
   return (
     <div>
       <List
@@ -56,7 +74,7 @@ function ArticleList(props) {
               </Col>
               <Col span={6}>
                 <Button type="primary">修改</Button>&nbsp;
-                <Button>删除</Button>
+                <Button onClick={() => {delArticle(item.id)}}>删除</Button>
               </Col>
             </Row>
           </List.Item>
