@@ -17,12 +17,16 @@ function AddArticle(props) {
   const [introducemd, setIntroducemd] = useState(); //简介的markdown内容
   const [introducehtml, setIntroducehtml] = useState('等待编辑'); //简介的html内容
   const [showDate, setShowDate] = useState(); //发布日期
-  const [updateDate, setUpdateDate] = useState(); //修改日志的日期
   const [typeInfo, setTypeInfo] = useState([]); // 文章类别信息
   const [selectedType, setSelectType] = useState(1); //选择的文章类别
 
   useEffect(() => {
     getTypeInfo()
+    let tmpId = props.match.params.id
+    if(tmpId) {
+      setArticleId(tmpId)
+      getArticleById(tmpId)
+    }
   }, []);
 
   marked.setOptions({
@@ -62,6 +66,24 @@ function AddArticle(props) {
         } else {
           setTypeInfo(res.data.data)
         }
+      }
+    )
+  }
+
+  const getArticleById = (id) => {
+    axios(`${servicePath.getAdminArticleById}/${id}`, {
+      withCredentials: true
+    }).then(
+      res => {
+        setArticleTitle(res.data.data[0].title)
+        setArticleContent(res.data.data[0].article_content)
+        let html = marked(res.data.data[0].article_content)
+        setMarkdownContent(html)
+        setIntroducemd(res.data.data[0].introduce)
+        let tmpInt = marked(res.data.data[0].introduce)
+        setIntroducehtml(tmpInt)
+        setShowDate(res.data.data[0].addTime)
+        setSelectType(res.data.data[0].typeId)
       }
     )
   }

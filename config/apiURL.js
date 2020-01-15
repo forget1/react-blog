@@ -10,7 +10,8 @@ let servicePath = {
   addArticle: ipURL + 'admin/addArticle', // 添加文章
   updateArticle: ipURL + 'admin/updateArticle', // 修改文章
   getArticleList: ipURL + 'admin/getArticleList', // 文章列表
-  delArticle: ipURL + 'admin/delArticle' // 删除文章
+  delArticle: ipURL + 'admin/delArticle', // 删除文章
+  getAdminArticleById: ipURL + 'admin/getAdminArticleById'
 }
 
 export default servicePath;

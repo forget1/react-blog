@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { List, Row, Col, Modal, message, Button, Switch } from 'antd'
+import { List, Row, Col, Modal, message, Button } from 'antd'
 import axios from 'axios'
 import servicePath from '../../../config/apiURL'
 import '../static/css/ArticleList.css'
@@ -39,6 +39,10 @@ function ArticleList(props) {
       }
     })
   }
+  // 修改文章
+  const updateArticle = (id) => {
+    props.history.push(`/index/add/${id}`)
+  }
   return (
     <div>
       <List
@@ -73,7 +77,7 @@ function ArticleList(props) {
                 {item.addTime}
               </Col>
               <Col span={6}>
-                <Button type="primary">修改</Button>&nbsp;
+                <Button type="primary" onClick={() => {updateArticle(item.id)}}>修改</Button>&nbsp;
                 <Button onClick={() => {delArticle(item.id)}}>删除</Button>
               </Col>
             </Row>

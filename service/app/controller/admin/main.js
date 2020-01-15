@@ -70,6 +70,25 @@ class MainController extends Controller {
       data: res,
     };
   }
+
+  // 根据文章ID得到文章详情，用于修改文章
+  async getAdminArticleById() {
+    const id = this.ctx.params.id;
+    const sql = 'select article.id as id,' +
+      'article.title as title,' +
+      'article.introduce as introduce,' +
+      'article.article_content as article_content,' +
+      "from_unixtime(article.addTime,'%Y-%m-%d' ) as addTime," +
+      'article.view_count as view_count ,' +
+      'type.typeName as typeName ,' +
+      'type.id as typeId ' +
+      'FROM article LEFT join type on article.type_id = type.id ' +
+      'where article.id=' + id;
+    const result = await this.app.mysql.query(sql);
+    this.ctx.body = {
+      data: result,
+    };
+  }
 }
 
 module.exports = MainController;
